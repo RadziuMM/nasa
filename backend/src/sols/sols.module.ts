@@ -8,5 +8,6 @@ import { SolsService } from './sols.service';
   imports: [TypeOrmModule.forFeature([SolsEntity])],
   controllers: [SolsController],
   providers: [SolsService],
+  exports: [SolsService],
 })
 export class SolsModule {}

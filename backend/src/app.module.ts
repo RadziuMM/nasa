@@ -21,7 +21,7 @@ dotenv.config();
       database: process.env.DATABASE,
       entities: ['dist/**/*.entity.js'],
       synchronize: false,
-      logging: true,
+      logging: false,
     }),
     ApodModule,
     PhotosModule,

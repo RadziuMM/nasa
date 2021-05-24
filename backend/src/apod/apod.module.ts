@@ -8,5 +8,6 @@ import { ApodService } from './apod.service';
   imports: [TypeOrmModule.forFeature([ApodEntity])],
   controllers: [ApodController],
   providers: [ApodService],
+  exports: [ApodService],
 })
 export class ApodModule {}
