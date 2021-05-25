@@ -1,73 +1,58 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
-
+## Installation and runing
 ```bash
-$ npm install
+$ yarn
+$ yarn start
 ```
+## ENDPOINTS
 
-## Running the app
+### GET http://www.localhost:7000/apod
+### GET http://www.localhost:7000/sols
+### POST http://www.localhost:7000/photos 
+##### { date: string; rover: string; camera: string }
+##### date = YYYY-MM-DD
+##### rover= curiosity|opportunity|spirit
+##### camera(optional) = fhaz|rhaz|mast|chemcam|mahli|mardi|navcam|pancam|minites|all
+#### Why can i choose only one camera or rover per request?
+##### It's my solution to ux and long time to response.A better answer is to have the frontend load the results incrementally than to wait 10 seconds for a response from the backend(IMHO).
+#### Why I didn't do the whole CRUD REST API?
+##### I did.And I deleted it because I don't need those endpoints(u can check that in git commit "crud for apod/photos/sols DB's")
 
-```bash
-# development
-$ npm run start
+## Own DataBase or NASA API Key?
 
-# watch mode
-$ npm run start:dev
+Just change .env file.
+DB must be mysql and must have 2 tables (sols and apod)
 
-# production mode
-$ npm run start:prod
+### apod
+```sql
+CREATE TABLE `apod` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`copyright` VARCHAR(100),
+	`date` VARCHAR(100),
+	`explanation` VARCHAR(500),
+	`hdurl` VARCHAR(100),
+	`media_type` VARCHAR(100),
+	`service_version` VARCHAR(100),
+	`title` VARCHAR(100),
+	`url` VARCHAR(100),
+	PRIMARY KEY (`id`)
+);
 ```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+### sols
+```sql
+CREATE TABLE `apod` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`terrestrial_date` VARCHAR(100),
+	`sol` VARCHAR(100),
+	`ls` VARCHAR(100),
+	`season` VARCHAR(100),
+	`min_temp` VARCHAR(100),
+	`max_temp` VARCHAR(100),
+	`pressure` VARCHAR(100),
+	`sunrise` VARCHAR(100),
+	`sunset` VARCHAR(100),
+	PRIMARY KEY (`id`)
+);
 ```
+## Why don't I store photos in db?
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+API provides photos after 25 on request.I would need to perform over 1000 requests with each DB update .That would literally be a DDOS.

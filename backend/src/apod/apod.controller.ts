@@ -1,4 +1,4 @@
-import { Controller, Get, Param, HttpStatus } from '@nestjs/common';
+import { Controller, Get, HttpStatus } from '@nestjs/common';
 import { ApodService } from './apod.service';
 
 @Controller('apod')
@@ -12,16 +12,6 @@ export class ApodController {
       statusCode: HttpStatus.OK,
       message: 'Apod fetched successfully',
       apod,
-    };
-  }
-
-  @Get(':id')
-  async readApod(@Param('id') id: number) {
-    const data = await this.apodService.read(id);
-    return {
-      statusCode: HttpStatus.OK,
-      message: 'Apod fetched successfully',
-      data,
     };
   }
 }

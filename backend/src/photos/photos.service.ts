@@ -1,45 +1,51 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { PhotosEntity } from './photos.entity';
-import { PhotosDTO } from './photos.dto';
+import axios from 'axios';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+
+//collect data
+const request = async (rover, date, camera, page, photos) => {
+  let done = false;
+  return await axios
+    .get(
+      `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?earth_date=${date}${camera}&page=${page}&api_key=${process.env.KEY}`,
+    )
+    .then(async (response) => {
+      response.data.photos.forEach((element) => {
+        photos.push(element);
+      });
+      if (response.data.photos.length === 0) done = true;
+      if (!done) {
+        return await request(rover, date, camera, page + 1, photos);
+      }
+      return await photos;
+    })
+    .catch((error) => console.log(error));
+};
 
 @Injectable()
 export class PhotosService {
-  constructor(
-    @InjectRepository(PhotosEntity)
-    private photoRepository: Repository<PhotosEntity>,
-  ) {}
-
-  async showAll() {
-    return await this.photoRepository.find();
-  }
-
-  async create(data: PhotosDTO) {
-    const photo = this.photoRepository.create(data);
-    await this.photoRepository.save(data);
-    return photo;
-  }
-
-  async findBySol(sol: string): Promise<PhotosDTO> {
-    return await this.photoRepository.findOne({
-      where: {
-        sol: sol,
-      },
-    });
-  }
-
-  async read(id: number) {
-    return await this.photoRepository.findOne({ where: { id: id } });
-  }
-
-  async update(id: number, data: Partial<PhotosDTO>) {
-    await this.photoRepository.update({ id }, data);
-    return await this.photoRepository.findOne({ id });
-  }
-
-  async destroy(id: number) {
-    await this.photoRepository.delete({ id });
-    return { deleted: true };
+  async sendPhotos(data: { date: string; rover: string; camera: string }) {
+    const date = data.date ?? 'wrong';
+    const rover = data.rover ?? 'wrong';
+    let camera = data.camera ?? 'all'; //optional
+    //data validation
+    if (
+      rover.match(/^(curiosity|opportunity|spirit)$/) &&
+      camera.match(
+        /^(fhaz|rhaz|mast|chemcam|mahli|mardi|navcam|pancam|minites|all)$/,
+      ) &&
+      date.match(/^\d{4}([-])\d{2}\1\d{2}$/)
+    ) {
+      if (camera !== 'all') {
+        camera = `&camera=${camera}`;
+      } else {
+        camera = '';
+      }
+    } else {
+      return await 'You have entered the wrong data!';
+    }
+    return await request(rover, date, camera, 1, []);
   }
 }

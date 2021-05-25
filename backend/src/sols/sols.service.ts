@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { getConnection, Repository } from 'typeorm';
 import { SolsEntity } from './sols.entity';
-import { SolsDTO } from './sols.dto';
+import axios from 'axios';
 
 @Injectable()
 export class SolsService {
@@ -15,31 +15,48 @@ export class SolsService {
     return await this.usersRepository.find();
   }
 
-  async create(data: SolsDTO) {
-    const user = this.usersRepository.create(data);
-    await this.usersRepository.save(data);
-    return user;
-  }
-
-  async findBySol(sol: string): Promise<SolsDTO> {
-    return await this.usersRepository.findOne({
-      where: {
-        sol: sol,
-      },
-    });
-  }
-
-  async read(id: number) {
-    return await this.usersRepository.findOne({ where: { id: id } });
-  }
-
-  async update(id: number, data: Partial<SolsDTO>) {
-    await this.usersRepository.update({ id }, data);
-    return await this.usersRepository.findOne({ id });
-  }
-
-  async destroy(id: number) {
-    await this.usersRepository.delete({ id });
-    return { deleted: true };
+  async updateDB() {
+    let data_sols;
+    const packed_sols_data = [];
+    // clear DB
+    getConnection()
+      .createQueryBuilder()
+      .delete()
+      .from('sols')
+      .execute()
+      .then(() => {
+        axios
+          .get(
+            'https://mars.nasa.gov/rss/api/?feed=weather&category=mars2020&feedtype=json',
+          )
+          .then((response) => (data_sols = response.data.sols))
+          .then(() => {
+            data_sols.forEach((element) => {
+              packed_sols_data.push({
+                id: 0,
+                terrestrial_date: element.terrestrial_date,
+                sol: element.sol,
+                ls: element.ls,
+                season: element.season,
+                min_temp: element.min_temp,
+                max_temp: element.max_temp,
+                pressure: element.pressure,
+                sunrise: element.sunrise,
+                sunset: element.sunset,
+              });
+            });
+          })
+          .then(() => {
+            // Save new data on DB
+            getConnection()
+              .createQueryBuilder()
+              .insert()
+              .into('sols')
+              .values(packed_sols_data)
+              .execute();
+          })
+          .then(() => console.log('Sols DB updated successfully!'))
+          .catch((error) => console.log(error));
+      });
   }
 }

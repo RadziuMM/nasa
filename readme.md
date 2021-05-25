@@ -6,5 +6,3 @@ API powinno zawierać:
 - Astronomy Picture Of The Day (APOD) wraz z opisem i możliwością obejrzenia poprzednich.
 
 Do swojego API utwórz aplikację frontendową w Vue i Nuxt.js, która pozwoli sprawdzić pogodę na Marsie, obejrzeć zdjęcia z Marsa i w ramach ciekawostki pozwoli przeglądać dzisiejsze i poprzednie APOD. Pamiętaj o wykorzystaniu pełni możliwości swojego API.
-
-Oceniany będzie każdy aspekt aplikacji od czystości kodu, przez trzymanie standardów po architekturę. Podczas realizacji zadania staraj się pracować płynnie na repozytorium hostowanym na GitHub (lub alternatywnym serwisie). 

@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { SchedulerService } from './scheduler.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ApodModule } from './apod/apod.module';
 import { PhotosModule } from './photos/photos.module';
@@ -28,6 +27,6 @@ dotenv.config();
     SolsModule,
   ],
   controllers: [AppController],
-  providers: [AppService, SchedulerService],
+  providers: [AppService],
 })
 export class AppModule {}

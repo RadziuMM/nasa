@@ -1,4 +1,4 @@
-import { Controller, Get, Param, HttpStatus } from '@nestjs/common';
+import { Controller, Get, HttpStatus } from '@nestjs/common';
 import { SolsService } from './sols.service';
 
 @Controller('sols')
@@ -12,16 +12,6 @@ export class SolsController {
       statusCode: HttpStatus.OK,
       message: 'Sols fetched successfully',
       sols,
-    };
-  }
-
-  @Get(':id')
-  async readSol(@Param('id') id: number) {
-    const data = await this.solsService.read(id);
-    return {
-      statusCode: HttpStatus.OK,
-      message: 'Sol fetched successfully',
-      data,
     };
   }
 }
