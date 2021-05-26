@@ -1,5 +1,5 @@
 <template>
-  <div class="container">Główna</div>
+  <div class="container">apod</div>
 </template>
 
 <script lang="ts">
