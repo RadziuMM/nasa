@@ -3,3 +3,12 @@
 @import 'apod.scss';
 @import 'gallery.scss';
 @import 'navigation.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: $white;
+}

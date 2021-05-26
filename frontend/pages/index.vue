@@ -14,9 +14,6 @@ let sols = []
 let focusedDay = 0
 const solsApi = 'http://www.localhost:7000/sols'
 export default Vue.extend({
-  data() {
-    return {}
-  },
   mounted() {
     this.getSols()
   },
@@ -66,25 +63,3 @@ export default Vue.extend({
   },
 })
 </script>
-
-<style lang="scss">
-.container {
-  display: flex;
-  justify-content: space-around;
-  width: 90vw;
-  height: 100vh;
-  & > .arrow {
-    transform: translate(0, 45vh);
-    height: 20px;
-  }
-  & > .content {
-    border: 1px solid black;
-    border-radius: 25px;
-    margin-top: 50vh;
-    transform: translate(0, -50%);
-    width: 30vw;
-    height: 80vh;
-    text-align: center;
-  }
-}
-</style>

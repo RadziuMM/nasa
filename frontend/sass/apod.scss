@@ -1,0 +1,15 @@
+@import 'mixins';
+
+.apod {
+  text-align: center;
+  width: 90vw;
+}
+
+.apod__photo {
+  height: 40vh;
+}
+
+.img_holder {
+  height: 40vh;
+  width: auto;
+}
