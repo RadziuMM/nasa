@@ -1,5 +1,6 @@
 <template>
   <div class="apod">
+    <h1>Astronomy Picture Of Day</h1>
     <div id="contentBox_A"></div>
     <button id="bP_A" class="arrow" @click="changeApod(-1)"></button>
     <button id="bN_A" class="arrow" @click="changeApod(1)"></button>

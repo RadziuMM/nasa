@@ -1,5 +1,6 @@
 <template>
   <div class="gallery">
+    <div class="keeper"></div>
     <div class="gallery__filter">
       Filter
       <div class="gallery__filter--date">
@@ -54,6 +55,14 @@
       <ul>
         <li v-for="item in Gallery" :key="item.id">
           <img class="gallery__photos--img" :src="item.img_src" alt="" />
+          <div>
+            <span class="photoTitle">Date:</span>{{ item.earth_date }} <br />
+            <span class="photoTitle">Photo id:</span>{{ item.id }}<br />
+            <span class="photoTitle">Solar day:</span>{{ item.sol }} <br />
+            <span class="photoTitle">Camera:</span>{{ item.camera.full_name }}
+            <br />
+            <span class="photoTitle">Rover:</span>{{ item.rover.name }} <br />
+          </div>
         </li>
       </ul>
     </div>
@@ -135,6 +144,7 @@ export default Vue.extend({
               })
             })
             .then(() => {
+              console.log(this.Gallery)
               const inputs = document.getElementsByTagName('input')
               for (let i = 0; i < inputs.length; i++) {
                 inputs[i].disabled = false
