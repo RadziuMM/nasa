@@ -1,8 +1,18 @@
 <template>
   <div class="container">
-    <button id="bP" class="arrow" @click="changeDay(-1)">Previus</button>
-    <div id="contentBox" class="content">content</div>
-    <button id="bN" class="arrow" @click="changeDay(1)">Next</button>
+    <button
+      id="bP"
+      class="arrow"
+      disabled="true"
+      @click="changeDay(-1)"
+    ></button>
+    <div id="contentBox" class="content">Loading......</div>
+    <button
+      id="bN"
+      class="arrow"
+      disabled="true"
+      @click="changeDay(1)"
+    ></button>
   </div>
 </template>
 
@@ -29,20 +39,27 @@ export default Vue.extend({
           focusedDay = sols.length - 1
         })
         .then(() => this.changeDay(0))
+        .catch(() => {
+          this.draw(false)
+        })
     },
-    draw() {
+    draw(arg: boolean) {
       const box = document.getElementById('contentBox') as HTMLDivElement
-      box.innerHTML = `
-      date:${sols[focusedDay].terrestrial_date} <br/>
-      sol:${sols[focusedDay].sol}<br/>
-      sunrise:${sols[focusedDay].sunrise}<br/>
-      sunset:${sols[focusedDay].sunset}<br/>
-      season:${sols[focusedDay].season}<br/>
-      min_temp:${sols[focusedDay].min_temp}<br/>
-      max_temp:${sols[focusedDay].max_temp}<br/>
-      pressure:${sols[focusedDay].pressure}<br/>
-      ls:${sols[focusedDay].ls}
-      `
+      if (arg) {
+        box.innerHTML = `
+        <span class="title">date:</span>${sols[focusedDay].terrestrial_date} <br/>
+         <span class="title">sol:</span>${sols[focusedDay].sol}<br/>
+         <span class="title">sunrise:</span>${sols[focusedDay].sunrise}<br/>
+        <span class="title"> sunset:</span>${sols[focusedDay].sunset}<br/>
+        <span class="title"> season:</span>${sols[focusedDay].season}<br/>
+         <span class="title">min_temp:</span>${sols[focusedDay].min_temp}<br/>
+         <span class="title">max_temp:</span>${sols[focusedDay].max_temp}<br/>
+         <span class="title">pressure:</span>${sols[focusedDay].pressure}<br/>
+         <span class="title">ls:</span>${sols[focusedDay].ls}
+        `
+      } else {
+        box.innerHTML = `Sorry, but we have problem with server.Try again later.`
+      }
     },
     changeDay(int: number) {
       focusedDay += int
@@ -58,7 +75,7 @@ export default Vue.extend({
       } else {
         bN.disabled = false
       }
-      this.draw()
+      this.draw(true)
     },
   },
 })
