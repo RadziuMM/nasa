@@ -10,7 +10,7 @@
 import Vue from 'vue'
 import axios from 'axios'
 
-let apod = []
+let apod: any[] = []
 let focusedApod = 0
 const apodAPI = 'http://www.localhost:7000/apod'
 export default Vue.extend({
@@ -30,7 +30,7 @@ export default Vue.extend({
         })
         .then(() => this.changeApod(0))
     },
-    changeApod(int) {
+    changeApod(int: number) {
       focusedApod += int
       const bP = document.getElementById('bP_A') as HTMLButtonElement
       const bN = document.getElementById('bN_A') as HTMLButtonElement
@@ -47,7 +47,7 @@ export default Vue.extend({
       this.draw()
     },
     draw() {
-      const box = document.getElementById('contentBox_A')
+      const box = document.getElementById('contentBox_A') as HTMLDivElement
       box.innerHTML = ` 
           <h2>${apod[focusedApod].title}</h2> <br/>
           <div class="img_holder">

@@ -10,7 +10,7 @@
 import Vue from 'vue'
 import axios from 'axios'
 
-let sols = []
+let sols: any = []
 let focusedDay = 0
 const solsApi = 'http://www.localhost:7000/sols'
 export default Vue.extend({
@@ -31,7 +31,7 @@ export default Vue.extend({
         .then(() => this.changeDay(0))
     },
     draw() {
-      const box = document.getElementById('contentBox')
+      const box = document.getElementById('contentBox') as HTMLDivElement
       box.innerHTML = `
       date:${sols[focusedDay].terrestrial_date} <br/>
       sol:${sols[focusedDay].sol}<br/>
@@ -44,7 +44,7 @@ export default Vue.extend({
       ls:${sols[focusedDay].ls}
       `
     },
-    changeDay(int) {
+    changeDay(int: number) {
       focusedDay += int
       const bP = document.getElementById('bP') as HTMLButtonElement
       const bN = document.getElementById('bN') as HTMLButtonElement
