@@ -2,14 +2,59 @@
 
 .apod {
   text-align: center;
-  width: 90vw;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('../assets/space.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &>#contentBox_A {
+    padding-right: 10vw;
+    text-shadow: black 1px 1px;
+
+    &>h2 {
+      color: $orange;
+      font-size: 32px;
+    }
+
+    &>h5 {
+      color: $orange;
+      font-size: 16px;
+    }
+
+    &>.textBox {
+      width: 60vw;
+      margin: 0 auto;
+      margin-top: 5vh;
+      color: black;
+      text-shadow: white 1px 1px;
+      font-size: 20;
+      font-weight: bolder;
+    }
+  }
 }
 
 .apod__photo {
   height: 40vh;
+  margin-top: 10px;
+  border: 2px solid $brown;
 }
 
 .img_holder {
   height: 40vh;
-  width: auto;
+  width: 90vw;
+}
+
+#bP_A {
+  top: 12vw;
+  left: 15vw;
+  transform: rotate(-220deg) translate(-50%, -50%);
+  -webkit-transform: rotate(-220deg) translate(-50%, -50%);
+}
+
+#bN_A {
+  top: 12vw;
+  right: 25vw;
+  transform: rotate(-45deg) translate(-50%, -50%);
+  -webkit-transform: rotate(-45deg) translate(-50%, -50%);
 }

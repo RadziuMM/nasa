@@ -1,8 +1,8 @@
 <template>
   <div class="apod">
     <div id="contentBox_A"></div>
-    <button id="bP_A" class="arrowA" @click="changeApod(-1)">tył</button>
-    <button id="bN_A" class="arrowA" @click="changeApod(1)">przód</button>
+    <button id="bP_A" class="arrow" @click="changeApod(-1)"></button>
+    <button id="bN_A" class="arrow" @click="changeApod(1)"></button>
   </div>
 </template>
 
@@ -34,29 +34,31 @@ export default Vue.extend({
       focusedApod += int
       const bP = document.getElementById('bP_A') as HTMLButtonElement
       const bN = document.getElementById('bN_A') as HTMLButtonElement
-      if (focusedApod === 0) {
-        bP.disabled = true
-      } else {
-        bP.disabled = false
-      }
-      if (focusedApod === apod.length - 1) {
-        bN.disabled = true
-      } else {
-        bN.disabled = false
-      }
+      try {
+        if (focusedApod === 0) {
+          bP.disabled = true
+        } else {
+          bP.disabled = false
+        }
+        if (focusedApod === apod.length - 1) {
+          bN.disabled = true
+        } else {
+          bN.disabled = false
+        }
+      } catch (error) {}
       this.draw()
     },
     draw() {
       const box = document.getElementById('contentBox_A') as HTMLDivElement
       box.innerHTML = ` 
-          <h2>${apod[focusedApod].title}</h2> <br/>
-          <div class="img_holder">
+        <h2>${apod[focusedApod].title}</h2>
+        <h5>DATE : ${apod[focusedApod].date} </h5>
+        <div class="img_holder">
           <img class="apod__photo" src="${apod[focusedApod].url}"
           onerror='this.onerror=null; this.src="https://bpgroup.lv/i/product_images/images/Z2000128389.jpg"'
           /> 
-          </div><br/>
-          ${apod[focusedApod].explanation} <br/>
-          date : ${apod[focusedApod].date} <br/>
+        </div>
+        <div class="textBox">${apod[focusedApod].explanation}</div>
       `
     },
   },
