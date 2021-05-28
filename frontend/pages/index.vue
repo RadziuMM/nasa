@@ -20,10 +20,12 @@
 <script lang="ts">
 import Vue from 'vue'
 import axios from 'axios'
+import * as dotenv from 'dotenv'
+dotenv.config()
 
 let sols: any = []
 let focusedDay = 0
-const solsApi = 'http://www.localhost:7000/sols'
+const solsApi = `${process.env.SOLS}`
 export default Vue.extend({
   mounted() {
     this.getSols()

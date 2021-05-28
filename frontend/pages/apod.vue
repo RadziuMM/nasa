@@ -23,10 +23,12 @@
 <script lang="ts">
 import Vue from 'vue'
 import axios from 'axios'
+import * as dotenv from 'dotenv'
+dotenv.config()
 
 let apod: any[] = []
-let focusedApod = 0
-const apodAPI = 'http://www.localhost:7000/apod'
+let focusedApod: number = 0
+const apodAPI = `${process.env.APOD}`
 export default Vue.extend({
   mounted() {
     this.getApod()

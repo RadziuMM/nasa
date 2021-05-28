@@ -51,7 +51,8 @@
         <label for="minites"> minites</label><br />
       </div>
     </div>
-    <div class="gallery__photos">
+    <div id="gallery" class="gallery__photos">
+      <div id="alert"></div>
       <ul>
         <li v-for="item in Gallery" :key="item.id">
           <img class="gallery__photos--img" :src="item.img_src" alt="" />
@@ -72,9 +73,13 @@
 <script lang="ts">
 import axios from 'axios'
 import Vue from 'vue'
-const API = `http://www.localhost:7000/photos `
-const cameras: any[] = []
-const rovers: any = []
+import * as dotenv from 'dotenv'
+dotenv.config()
+
+const API = `${process.env.PHOTOS}`
+const cameras: string[] = []
+const rovers: string[] = []
+let quene: number = 0
 let date: string = ''
 export default Vue.extend({
   data() {
@@ -115,6 +120,8 @@ export default Vue.extend({
     sendRequest() {
       let cam: any[] = ['all']
       let rov: any[] = []
+      const alert = document.getElementById('alert') as HTMLDivElement
+      alert.innerHTML = ``
       const inputs = document.getElementsByTagName('input')
       for (let i = 0; i < inputs.length; i++) {
         inputs[i].disabled = true
@@ -130,6 +137,7 @@ export default Vue.extend({
       }
       rov.forEach((element) => {
         cam.forEach((ele) => {
+          quene++
           axios
             .post(API, { date, rover: element, camera: ele })
             .then((response) => {
@@ -142,6 +150,17 @@ export default Vue.extend({
             })
             .then(() => {
               const inputs = document.getElementsByTagName('input')
+              quene--
+              if (quene === 0) {
+                for (let i = 0; i < inputs.length; i++) {
+                  inputs[i].disabled = false
+                }
+              }
+            })
+            .catch(() => {
+              const inputs = document.getElementsByTagName('input')
+              const alert = document.getElementById('alert') as HTMLDivElement
+              alert.innerHTML = `<div class="alert ">Sorry, but we have problem with server.Try again later.<div>`
               for (let i = 0; i < inputs.length; i++) {
                 inputs[i].disabled = false
               }

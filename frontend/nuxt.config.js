@@ -1,3 +1,5 @@
+import * as dotenv from 'dotenv'
+dotenv.config()
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -15,6 +17,11 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
+  env: {
+    SOLS: process.env.SOLS,
+    APOD: process.env.APOD,
+    PHOTOS: process.env.PHOTOS,
+  },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],

@@ -1,27 +1,11 @@
-# frontend
-
-## Build Setup
-
+## Installation and runing
 ```bash
-# install dependencies
-$ yarn install
-
-# serve with hot reload at localhost:3000
+$ yarn
 $ yarn dev
-
-# build for production and launch server
-$ yarn build
-$ yarn start
-
-# generate static project
-$ yarn generate
 ```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
-
-
-Main Page
---weather
-Subpages
---photos
---apod
+## Where is my page?
+```bash
+http://localhost:3000/
+```
+## You changed  API adress?
+Just change .env file.
