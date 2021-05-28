@@ -1,0 +1,58 @@
+@import 'mixins';
+
+.apod {
+  text-align: center;
+  min-height: 100vh;
+  max-height: max-content;
+  background-image: url('./assets/space.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &>.arrowHolder {
+    position: relative;
+    height: 50px;
+    padding: 25px;
+  }
+
+  &>#contentBox_A {
+    padding-right: 10vw;
+    text-shadow: black 1px 1px;
+    min-height: 40vh;
+  }
+
+  &>#contentBox_A--explanation>.textBox {
+    padding-right: 10vw;
+    width: 60vw;
+    margin: 0 auto;
+    color: black;
+    text-shadow: white 0.4px 0.4px;
+    font-size: $Large;
+    font-weight: bolder;
+    padding-bottom: 10vw;
+  }
+}
+
+.apod__photo {
+  max-height: 40vh;
+  max-width: 60vw;
+  margin-top: 10px;
+  border: 2px solid $brown;
+}
+
+.img_holder {
+  width: 90vw;
+}
+
+#bP_A {
+  position: absolute;
+  left: 10vw;
+  transform: rotate(-220deg) translate(-50%, -41%);
+  -webkit-transform: rotate(-220deg) translate(-50%, -41%);
+}
+
+#bN_A {
+  position: absolute;
+  right: 20vw;
+  transform: rotate(-45deg) translate(-50%, -50%);
+  -webkit-transform: rotate(-45deg) translate(-50%, -50%);
+}

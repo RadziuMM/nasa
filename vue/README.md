@@ -1,0 +1,1 @@
+Well,this is copied in 90% from the nuxt folder("utwórz aplikację frontendową w Vue i Nuxt.js"i guess it shoud be "albo") :)

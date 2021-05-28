@@ -1,0 +1,73 @@
+@import 'mixins.scss';
+
+.menu {
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 100vw;
+  background-color: black;
+  height: 100vh;
+  transform: translate(-20%, 0);
+  transition: 1s;
+  width: 60vw;
+
+  @media (min-width: 1024px) {
+    width: 30vw;
+
+  }
+
+  &:hover {
+    transform: translate(-100%, 0);
+  }
+
+  &>.menu__handler {
+    color: $orange;
+    float: left;
+    height: 100vh;
+    width: 20%;
+    margin-top: 50vh;
+    font-size: 24px;
+    letter-spacing: 10px;
+    transform: translate(0%, -13%);
+
+    &>div {
+      transform: rotate(270deg);
+    }
+  }
+
+  &>.menu__links {
+    float: left;
+    height: 100vh;
+    width: 80%;
+    list-style-type: none;
+
+    &>li {
+      text-align: center;
+      margin: 10px;
+      transition: 0.5s;
+
+      &:hover {
+        transform: scale(1.2);
+
+        &>a {
+          color: $darkYellow;
+        }
+      }
+
+      &:first-child {
+        margin-top: 30vh;
+      }
+
+      &>a {
+        color: $lightYellow;
+        text-decoration: none;
+        font-size: 24px;
+        letter-spacing: 5px;
+      }
+
+      .nuxt-link-exact-active {
+        color: $darkYellow;
+      }
+    }
+  }
+}

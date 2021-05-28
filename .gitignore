@@ -35,39 +35,113 @@
 /backend/!.vscode/launch.json
 /backend/!.vscode/extensions.json
 
-# Frontend
+# vue
 
 # compiled output
-/frontend/dist
-/frontend/node_modules
+/vue/dist
+/vue/node_modules
 
 # Logs
-/frontend/logs
-/frontend/*.log
-/frontend/npm-debug.log*
-/frontend/yarn-debug.log*
-/frontend/yarn-error.log*
-/frontend/lerna-debug.log*
+/vue/logs
+/vue/*.log
+/vue/npm-debug.log*
+/vue/yarn-debug.log*
+/vue/yarn-error.log*
+/vue/lerna-debug.log*
 
 # OS
-/frontend/.DS_Store
+/vue/.DS_Store
 
 # Tests
-/frontend/coverage
-/frontend/.nyc_output
+/vue/coverage
+/vue/.nyc_output
 
 # IDEs and editors
-/frontend/.idea
-/frontend/.project
-/frontend/.classpath
-/frontend/.c9/
-/frontend/*.launch
-/frontend/.settings/
-/frontend/*.sublime-workspace
+/vue/.idea
+/vue/.project
+/vue/.classpath
+/vue/.c9/
+/vue/*.launch
+/vue/.settings/
+/vue/*.sublime-workspace
 
 # IDE - VSCode
-/frontend/.vscode/*
-/frontend/!.vscode/settings.json
-/frontend/!.vscode/tasks.json
-/frontend/!.vscode/launch.json
-/frontend/!.vscode/extensions.json
+/vue/.vscode/*
+/vue/!.vscode/settings.json
+/vue/!.vscode/tasks.json
+/vue/!.vscode/launch.json
+/vue/!.vscode/extensions.json
+
+# Nuxt
+
+# compiled output
+/nuxt/dist
+/nuxt/node_modules
+
+# Logs
+/nuxt/logs
+/nuxt/*.log
+/nuxt/npm-debug.log*
+/nuxt/yarn-debug.log*
+/nuxt/yarn-error.log*
+/nuxt/lerna-debug.log*
+
+# OS
+/nuxt/.DS_Store
+
+# Tests
+/nuxt/coverage
+/nuxt/.nyc_output
+
+# IDEs and editors
+/nuxt/.idea
+/nuxt/.project
+/nuxt/.classpath
+/nuxt/.c9/
+/nuxt/*.launch
+/nuxt/.settings/
+/nuxt/*.sublime-workspace
+
+# IDE - VSCode
+/nuxt/.vscode/*
+/nuxt/!.vscode/settings.json
+/nuxt/!.vscode/tasks.json
+/nuxt/!.vscode/launch.json
+/nuxt/!.vscode/extensions.json
+
+# Backend
+
+# compiled output
+/nuxt/dist
+/nuxt/node_modules
+
+# Logs
+/nuxt/logs
+/nuxt/*.log
+/nuxt/npm-debug.log*
+/nuxt/yarn-debug.log*
+/nuxt/yarn-error.log*
+/nuxt/lerna-debug.log*
+
+# OS
+/nuxt/.DS_Store
+
+# Tests
+/nuxt/coverage
+/nuxt/.nyc_output
+
+# IDEs and editors
+/nuxt/.idea
+/nuxt/.project
+/nuxt/.classpath
+/nuxt/.c9/
+/nuxt/*.launch
+/nuxt/.settings/
+/nuxt/*.sublime-workspace
+
+# IDE - VSCode
+/nuxt/.vscode/*
+/nuxt/!.vscode/settings.json
+/nuxt/!.vscode/tasks.json
+/nuxt/!.vscode/launch.json
+/nuxt/!.vscode/extensions.json
