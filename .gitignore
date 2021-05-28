@@ -80,6 +80,7 @@
 
 # Logs
 /nuxt/logs
+/nuxt/.nuxt
 /nuxt/*.log
 /nuxt/npm-debug.log*
 /nuxt/yarn-debug.log*
