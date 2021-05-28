@@ -102,7 +102,7 @@ export default Vue.extend({
       }
       this.sendRequest();
     },
-    setCamera(arg: any) {
+    setCamera(arg: string) {
       if (cameras.includes(arg)) {
         const index = cameras.indexOf(arg);
         if (index > -1) {
@@ -118,8 +118,8 @@ export default Vue.extend({
       this.sendRequest();
     },
     sendRequest() {
-      let cam: any[] = ["all"];
-      let rov: any[] = [];
+      let cam: string[] = ["all"];
+      let rov: string[] = [];
       const alert = document.getElementById("alert") as HTMLDivElement;
       alert.innerHTML = ``;
       const inputs = document.getElementsByTagName("input");

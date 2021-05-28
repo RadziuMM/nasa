@@ -11,7 +11,7 @@
     top: 45vh;
     transform: rotate(-220deg) translate(-50%, -41%);
     -webkit-transform: rotate(-220deg) translate(-50%, -41%);
-    left: 0vw;
+    left: 5vw;
 
     @media (min-width: 1024px) {
       left: 10vw;
@@ -26,14 +26,14 @@
     top: 45vh;
     transform: rotate(-45deg) translate(-50%, -50%);
     -webkit-transform: rotate(-45deg) translate(-50%, -50%);
-    right: 5vw;
+    right: 10vw;
 
     @media (min-width: 1024px) {
       right: 15vw;
     }
 
     @media (min-width: 1280px) {
-      right: 25vw;
+      right: 23vw;
     }
   }
 
