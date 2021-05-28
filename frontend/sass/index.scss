@@ -9,36 +9,63 @@
 
   &>#bP {
     top: 45vh;
-    left: 15vw;
-    transform: rotate(-220deg) translate(-50%, -50%);
-    -webkit-transform: rotate(-220deg) translate(-50%, -50%);
+    transform: rotate(-220deg) translate(-50%, -41%);
+    -webkit-transform: rotate(-220deg) translate(-50%, -41%);
+    left: 0vw;
+
+    @media (min-width: 1024px) {
+      left: 10vw;
+    }
+
+    @media (min-width: 1280px) {
+      left: 15vw;
+    }
   }
 
   &>#bN {
     top: 45vh;
-    right: 25vw;
     transform: rotate(-45deg) translate(-50%, -50%);
     -webkit-transform: rotate(-45deg) translate(-50%, -50%);
+    right: 5vw;
+
+    @media (min-width: 1024px) {
+      right: 15vw;
+    }
+
+    @media (min-width: 1280px) {
+      right: 25vw;
+    }
   }
 
   &>.content {
     position: fixed;
     left: 50vw;
     top: 50vh;
-    width: 25vw;
-    height: 85vh;
-    transform: translate(-70%, -46%);
+    padding-left: 10%;
+    padding-right: 10%;
     border: 6px $orange solid;
-    border-radius: 75px;
     text-align: center;
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    font-size: 22px;
     font-weight: bolder;
     box-shadow: black 3px 3px 10px;
     text-shadow: black 1px 1px;
+    min-height: 70vh;
+    max-width: 20vw;
+    transform: translate(-55%, -46%);
+    border-radius: 25px;
+    font-size: $Small;
+
+    @media (min-width: 600px) {
+      font-size: $Large;
+    }
+
+    @media (min-width: 1280px) {
+      transform: translate(-65%, -46%);
+      border-radius: 50px;
+    }
 
     &>.title {
       color: $orange;

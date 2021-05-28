@@ -2,8 +2,21 @@
   <div class="apod">
     <h1>Astronomy Picture Of Day</h1>
     <div id="contentBox_A"></div>
-    <button id="bP_A" class="arrow" @click="changeApod(-1)"></button>
-    <button id="bN_A" class="arrow" @click="changeApod(1)"></button>
+    <div class="arrowHolder">
+      <button
+        id="bP_A"
+        disabled="true"
+        class="arrow"
+        @click="changeApod(-1)"
+      ></button>
+      <button
+        id="bN_A"
+        disabled="true"
+        class="arrow"
+        @click="changeApod(1)"
+      ></button>
+    </div>
+    <div id="contentBox_A--explanation" class="alert">Loading.....</div>
   </div>
 </template>
 
@@ -30,6 +43,7 @@ export default Vue.extend({
           focusedApod = apod.length - 1
         })
         .then(() => this.changeApod(0))
+        .catch(() => this.draw(false))
     },
     changeApod(int: number) {
       focusedApod += int
@@ -47,20 +61,30 @@ export default Vue.extend({
           bN.disabled = false
         }
       } catch (error) {}
-      this.draw()
+      this.draw(true)
     },
-    draw() {
-      const box = document.getElementById('contentBox_A') as HTMLDivElement
-      box.innerHTML = ` 
-        <h2>${apod[focusedApod].title}</h2>
-        <h5>DATE : ${apod[focusedApod].date} </h5>
-        <div class="img_holder">
-          <img class="apod__photo" src="${apod[focusedApod].url}"
-          onerror='this.onerror=null; this.src="https://bpgroup.lv/i/product_images/images/Z2000128389.jpg"'
-          /> 
-        </div>
-        <div class="textBox">${apod[focusedApod].explanation}</div>
-      `
+    draw(arg: boolean) {
+      const box0 = document.getElementById('contentBox_A') as HTMLDivElement
+      const box1 = document.getElementById(
+        'contentBox_A--explanation'
+      ) as HTMLDivElement
+      if (arg) {
+        box0.innerHTML = ` 
+          <h2>${apod[focusedApod].title}</h2>
+          <h5>DATE : ${apod[focusedApod].date} </h5>
+          <div class="img_holder">
+            <img class="apod__photo" src="${apod[focusedApod].url}"
+            onerror='this.onerror=null; this.src="https://bpgroup.lv/i/product_images/images/Z2000128389.jpg"'
+            /> 
+          </div>
+        `
+        box1.innerHTML = `
+          <div class="textBox">${apod[focusedApod].explanation}</div>
+        `
+      } else {
+        box0.innerHTML = ``
+        box1.innerHTML = `<div class="alert textBox">Sorry, but we have problem with server.Try again later.<div>`
+      }
     },
   },
 })

@@ -1,10 +1,10 @@
 <template>
   <div class="gallery">
-    <div class="keeper"></div>
+    <h2>Gallery</h2>
     <div class="gallery__filter">
-      Filter
+      <h3 class="subtitle">Filter</h3>
       <div class="gallery__filter--date">
-        DATE:<br />
+        <span class="subtitle">DATE:</span><br />
         <input
           id="input__date"
           type="date"
@@ -13,7 +13,7 @@
         /><br />
       </div>
       <div class="gallery__filter--rover">
-        ROVER:<br />
+        <span class="subtitle">ROVER:</span><br />
         <input
           type="checkbox"
           name="curiosity"
@@ -30,7 +30,7 @@
         <label for="spirit"> spirit</label><br />
       </div>
       <div class="gallery__filter--camera">
-        CAMERA:<br />
+        <span class="subtitle">CAMERA:</span><br />
         <input type="checkbox" name="fhaz" @click="setCamera('fhaz')" />
         <label for="fhaz"> fhaz</label><br />
         <input type="checkbox" name="rhaz" @click="setCamera('rhaz')" />
@@ -86,7 +86,7 @@ export default Vue.extend({
     this.setDate()
   },
   methods: {
-    setRovers(arg: any) {
+    setRovers(arg: string) {
       if (rovers.includes(arg)) {
         const index = rovers.indexOf(arg)
         if (index > -1) {
@@ -115,12 +115,10 @@ export default Vue.extend({
     sendRequest() {
       let cam: any[] = ['all']
       let rov: any[] = []
-      //
       const inputs = document.getElementsByTagName('input')
       for (let i = 0; i < inputs.length; i++) {
         inputs[i].disabled = true
       }
-      //
       this.Gallery = []
       if (rovers.length === 0) {
         rov = ['spirit', 'opportunity', 'curiosity']
@@ -130,7 +128,6 @@ export default Vue.extend({
       if (cameras.length !== 0) {
         cam = cameras
       }
-      //
       rov.forEach((element) => {
         cam.forEach((ele) => {
           axios
@@ -144,7 +141,6 @@ export default Vue.extend({
               })
             })
             .then(() => {
-              console.log(this.Gallery)
               const inputs = document.getElementsByTagName('input')
               for (let i = 0; i < inputs.length; i++) {
                 inputs[i].disabled = false

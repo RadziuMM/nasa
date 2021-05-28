@@ -28,7 +28,7 @@ CREATE TABLE `apod` (
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`copyright` VARCHAR(100),
 	`date` VARCHAR(100),
-	`explanation` VARCHAR(500),
+	`explanation` VARCHAR(5000),
 	`hdurl` VARCHAR(100),
 	`media_type` VARCHAR(100),
 	`service_version` VARCHAR(100),

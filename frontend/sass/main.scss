@@ -7,9 +7,115 @@
 * {
   margin: 0;
   padding: 0;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-html,
-body {
-  background-color: $white;
+h1 {
+  font-size: $Large;
+  color: $darkYellow;
+  width: 90vw;
+  padding-top: 2vh;
+  text-align: center;
+
+  @media (min-width: 600px) {
+    font-size: $Larger;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: $Big;
+  }
+}
+
+h2 {
+  color: $orange;
+  font-size: $Large;
+
+  @media (min-width: 1024px) {
+    font-size: $Larger;
+  }
+}
+
+h5 {
+  color: $orange;
+  font-size: $Small;
+
+  @media (min-width: 1024px) {
+    font-size: $Normal;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: black;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $darkYellow;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $orange;
+}
+
+.arrow {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  outline: none;
+  background: transparent;
+  border: solid black;
+  border-width: 0 10px 10px 0;
+  display: inline-block;
+  padding: 3px;
+  transition: 1s;
+  cursor: pointer;
+  filter: drop-shadow($orange 1px 1px 4px);
+
+  &:hover {
+    filter: drop-shadow(2px 2px 10px $orange);
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      border: solid black;
+      border-width: 0 10px 10px 0;
+      z-index: -1;
+    }
+
+    &:active:before {
+      transition: all 1s linear;
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+
+  &:disabled {
+    border: solid grey;
+    border-width: 0 10px 10px 0;
+    cursor: default;
+    filter: none;
+
+    &:before {
+      display: none;
+    }
+  }
+}
+
+.alert {
+  font-size: $Large;
+  color: white !important;
+  text-shadow: 2px 2px 2px black !important;
 }
