@@ -1,0 +1,23 @@
+[
+  {
+    "name": "apod",
+    "path": "/apod",
+    "component": "/home/boruta/code/nasa/frontend/pages/apod.vue",
+    "chunkName": "pages/apod",
+    "_name": "_798a6106"
+  },
+  {
+    "name": "gallery",
+    "path": "/gallery",
+    "component": "/home/boruta/code/nasa/frontend/pages/gallery.vue",
+    "chunkName": "pages/gallery",
+    "_name": "_1ee6cca9"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/home/boruta/code/nasa/frontend/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_3642a1e9"
+  }
+]

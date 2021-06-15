@@ -1,31 +1,21 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import axios from 'axios';
-import * as dotenv from 'dotenv';
-
-dotenv.config();
-
-//collect data
-const request = async (rover, date, camera, page, photos) => {
-  let done = false;
-  return await axios
-    .get(
-      `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?earth_date=${date}${camera}&page=${page}&api_key=${process.env.KEY}`,
-    )
-    .then(async (response) => {
-      response.data.photos.forEach((element) => {
-        photos.push(element);
-      });
-      if (response.data.photos.length === 0) done = true;
-      if (!done) {
-        return await request(rover, date, camera, page + 1, photos);
-      }
-      return await photos;
-    })
-    .catch((error) => console.log(error));
-};
+import { nasaAPI } from '../config';
 
 @Injectable()
 export class PhotosService {
+  //collect data
+  request = async (
+    rover: string,
+    date: string,
+    camera: string,
+    page: number,
+  ) => {
+    const { data } = await axios.get(
+      `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?earth_date=${date}${camera}&page=${page}&api_key=${nasaAPI.key}`,
+    );
+    return data.photos;
+  };
   async sendPhotos(data: { date: string; rover: string; camera: string }) {
     const date = data.date ?? 'wrong';
     const rover = data.rover ?? 'wrong';
@@ -44,8 +34,8 @@ export class PhotosService {
         camera = '';
       }
     } else {
-      return await 'You have entered the wrong data!';
+      throw new BadRequestException('You have entered the wrong data!');
     }
-    return await request(rover, date, camera, 1, []);
+    return await this.request(rover, date, camera, 1);
   }
 }
